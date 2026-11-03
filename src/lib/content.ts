@@ -189,7 +189,7 @@ export const caseStudy = {
   decisionsTitle: "Key technical decisions", decisions: [
     { title: "Sequential OCR queue", body: "Documents are processed one at a time through a queue, so bulk uploads never overload the AI service or lose files." },
     { title: "Offline upload queue", body: "The driver app stores uploads locally and sends them when the network returns, so weak mobile coverage never loses data." },
-    { title: "Row-level security audit", body: "I audited 620+ access policies so each role sees only its own department's data." },
+    { title: "Row-level security audit", body: "I audited 620+ access policies across 111 tables and fixed about 70 that let any signed-in user write data. Roles now live in a protected table only a super admin can change." },
     { title: "Arabic-first design", body: "Every screen was designed right-to-left first, then mirrored for English, instead of translating afterwards." },
   ],
   resultsTitle: "Results", results: [
@@ -209,7 +209,7 @@ export const caseStudy = {
   decisionsTitle: "قرارات تقنية رئيسية", decisions: [
     { title: "طابور OCR متسلسل", body: "تُعالج المستندات واحداً تلو الآخر عبر طابور، فلا يضغط الرفع الجماعي على خدمة الذكاء الاصطناعي ولا تضيع الملفات." },
     { title: "طابور رفع دون اتصال", body: "يحفظ تطبيق السائقين الملفات محلياً ويرسلها عند عودة الشبكة، فلا تضيع البيانات مع ضعف التغطية." },
-    { title: "تدقيق صلاحيات الصفوف", body: "دققت أكثر من 620 سياسة وصول ليرى كل دور بيانات قسمه فقط." },
+    { title: "تدقيق صلاحيات الصفوف", body: "دققت أكثر من 620 سياسة وصول في 111 جدولًا، وأصلحت نحو 70 منها كانت تسمح لأي مستخدم مسجّل بكتابة البيانات. أصبحت الأدوار الآن في جدول محمي لا يعدّله إلا المدير العام." },
     { title: "تصميم عربي أولاً", body: "صُممت كل شاشة من اليمين لليسار أولاً ثم عُكست للإنجليزية، بدلاً من الترجمة لاحقاً." },
   ],
   resultsTitle: "النتائج", results: [
