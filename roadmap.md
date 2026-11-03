@@ -7,5 +7,6 @@
 - [ ] HAFCO permission for its name in the demo — user decision.
 - [x] Download CV button (hero, next to "See the work").
 - [x] Confirm LinkedIn profile URL — https://www.linkedin.com/in/arahman-dev.
-- [ ] Replace CV, LinkedIn links, RLS wording and README with November 3 uploads; verify download and EN/AR.
+- [x] Replace CV, LinkedIn links, RLS wording and README with November 3 uploads; verify download and EN/AR.
+- [x] Update homepage preview title/description in the existing page-head system.
 - [ ] Add requested share image — og-image.png was not attached; awaiting user.
