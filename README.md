@@ -1,96 +1,106 @@
-Abdelrahman Mohamed — Portfolio
+# Abdelrahman Mohamed — Portfolio
 
-Personal portfolio of Abdelrahman Mohamed, Full Stack Software Engineer based in Dammam, Saudi Arabia. Bilingual (English / العربية), built with Next.js, TypeScript and Tailwind CSS.
+Personal portfolio of **Abdelrahman Mohamed**, Full Stack Software Engineer based in Dammam, Saudi Arabia.
+Bilingual (English / العربية), with a full right-to-left layout for Arabic.
 
-🔗 Live: https://arahman.pages.dev/
+🔗 **Live:** [arahman.pages.dev](https://arahman.pages.dev)
+📄 **CV:** [Download PDF](https://arahman.pages.dev/Abdelrahman_Mohamed_CV.pdf)
+🧪 **ERP demo:** [remix-of-hafco-base.pages.dev](https://remix-of-hafco-base.pages.dev)
 
-About
+---
 
-This site presents my work as a full stack engineer: case studies of production systems I've built, a design gallery, and a way to get in touch.
+## About
 
-The main case study is Hafco Base, a bilingual 13-module ERP I built solo for a heavy-transport company, covering fleet, HR and payroll, accounting, procurement, invoicing, Saudi government integrations (ZATCA, Qiwa, Muqeem, Bayan) and an Android driver app on Google Play.
+This site presents my work as a full stack engineer: a flagship ERP case study with a live demo, a company website, concept redesigns, and my own product, MergesPDF.
 
-Features
-🌐 Bilingual EN / AR: full right-to-left layout for Arabic, not just translated text
-📂 Case studies: problem, role, architecture, key technical decisions and measured results for each project
-🎨 Design gallery: UI concepts and motion work designed in Figma and built with Framer Motion
-✉️ Contact form: handled by a Next.js API route (Node.js runtime) with server-side validation and rate limiting
-♿ Accessible: semantic HTML, ARIA labels, keyboard navigation, visible focus states, alt text
-⚡ Fast: static generation where possible, optimized images and fonts
-🌙 Light and dark mode
-Case Studies
-Project	What it is
-Hafco Base	Bilingual 13-module ERP for a heavy-transport company: payroll, AI OCR, government integrations, RLS security audit
-Driver Portal	Android app (Capacitor) on Google Play: trip checkpoints, GPS attendance, offline-safe upload queue
-Kashef	AI document-extraction engine: per-document-type extraction with a queued, fault-isolated pipeline
-MergesPDF	Privacy-first PDF toolkit where core tools run fully in the browser, including Arabic/RTL Excel-to-PDF
+The main project is **Hafco Base**, a bilingual 13-module ERP I built as the sole developer for HAFCO Big Movers, a heavy-transport company in Dammam. It covers fleet, HR and payroll, accounting, procurement and trip invoicing, with ZATCA e-invoicing, Saudi government integrations (Qiwa, Muqeem, Bayan) and an Android driver app on Google Play.
 
-Note on the Hafco Base demo: the live demo runs on a separate database with fake sample data only. No real employee, client or financial data is used anywhere in this portfolio.
+## Pages
 
-Tech Stack
-Area	Tools
-Framework	Next.js (App Router), React, TypeScript
-Styling and motion	Tailwind CSS, Framer Motion
-i18n	Next.js internationalized routing, RTL-aware layout
-Backend	Next.js API routes (Node.js runtime), Resend for email
-Testing	Vitest, React Testing Library, Playwright (end-to-end)
-Quality	ESLint, Prettier, Lighthouse
-Deployment	Vercel, with automatic deploys from GitHub
-Project Structure
-├── app/
-│   ├── [locale]/              # en / ar routes
-│   │   ├── page.tsx           # Home
-│   │   ├── about/
-│   │   ├── work/              # Case study index
-│   │   │   └── [slug]/        # Individual case studies
-│   │   ├── design/            # Design gallery
-│   │   └── contact/
-│   └── api/
-│       └── contact/route.ts   # Contact form handler (Node.js)
-├── components/                # UI components
-├── content/                   # Case studies (MDX) in en / ar
-├── messages/                  # UI translations (en.json, ar.json)
-├── public/                    # Images, CV, videos
-└── tests/                     # Unit and end-to-end tests
-Getting Started
+| Route | Content |
+|---|---|
+| `/` | Hero, key numbers, about, services, selected work, contact |
+| `/hafco` | Hafco Base case study: challenge, role, system design, integrations, key technical decisions, architecture, demo screens |
 
-Requirements: Node.js 20+ and npm.
+## Selected Work
 
-bash
-git clone https://github.com/a-rahman-25/portfolio.git
-cd portfolio
+| Project | Type | Link |
+|---|---|---|
+| **Hafco Base ERP** | Flagship system (live demo, sample data) | [Demo](https://remix-of-hafco-base.pages.dev) · [Case study](https://arahman.pages.dev/hafco) |
+| **HAFCO Big Movers** | Company website | [hafcobigmovers.com](https://www.hafcobigmovers.com) |
+| **MergesPDF** | Personal product: privacy-first PDF toolkit | [mergespdf.com](https://mergespdf.com) |
+| **Elite Ticaret** | Concept redesign | [Live](https://elite-ticaret.pages.dev) |
+| **Elite Saudi** | Concept redesign, Arabic-first | [Live](https://elite-saudi-redefined.pages.dev) |
+| **Al-Shajarah** | Concept redesign | [Live](https://al-shajarah-reimagined.pages.dev) |
+| **Prime Elite** | Concept redesign | [Live](https://prime-elite-web.pages.dev) |
+| **Al-Khaldi** | Concept redesign | [Live](https://al-khaldi-legacy.pages.dev) |
+| **KEO** | Concept redesign | [Live](https://keo-heritage-reimagined.pages.dev) |
+| **Semi Sahara** | Concept redesign | [Live](https://semi-sahara-studio.pages.dev) |
+
+> **Concept redesigns** are unofficial design studies. They are not affiliated with, endorsed by or commissioned by the companies named.
+>
+> **The Hafco Base demo** runs on a separate database with fake sample data only, and its government integrations return sample responses. No real employee, client or financial data is used anywhere on this site.
+
+## Features
+
+- 🌐 **Bilingual EN / AR**: one-click language switch, with `lang` and `dir` updated so Arabic renders fully right-to-left
+- 📂 **Case study page** with measured results, key technical decisions and an architecture diagram
+- 🎞️ **Scroll animations**: sections reveal as they enter the viewport (IntersectionObserver + CSS keyframes), and the key numbers count up
+- 🖼️ **Project previews**: screen galleries for each project, with descriptive alt text
+- 📄 **One-click CV download**
+- 📱 **Responsive**: tested at phone, tablet and desktop widths with no horizontal scroll
+- 📞 **Direct contact**: email, phone and WhatsApp links
+
+## Tech Stack
+
+| Area | Tools |
+|---|---|
+| Framework | React, TypeScript, Vite |
+| Routing | React Router |
+| Styling | Tailwind CSS |
+| Animation | CSS keyframes, IntersectionObserver |
+| Hosting | Cloudflare Pages, auto-deploy from GitHub |
+
+## Getting Started
+
+**Requirements:** Node.js 20+ and npm.
+
+```bash
+git clone https://github.com/a-rahman-25/arahman-portfolio.git
+cd arahman-portfolio
 npm install
-cp .env.example .env.local   # then fill in the values
 npm run dev
+```
 
-Open http://localhost:3000.
+## Scripts
 
-Environment Variables
-Variable	Purpose
-RESEND_API_KEY	Sends contact form emails
-CONTACT_TO_EMAIL	Inbox that receives contact form messages
+| Command | What it does |
+|---|---|
+| `npm run dev` | Start the dev server |
+| `npm run build` | Production build into `dist/` |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Lint the code |
 
-Never commit .env.local. It is listed in .gitignore.
+## Deployment
 
-Scripts
-Command	What it does
-npm run dev	Start the dev server
-npm run build	Production build
-npm run start	Run the production build locally
-npm run lint	Lint the code
-npm test	Run unit and component tests (Vitest)
-npm run test:e2e	Run end-to-end tests (Playwright)
-Testing
-Unit and component tests (Vitest + React Testing Library): language switching, contact form validation, case study rendering
-End-to-end tests (Playwright): navigation in both languages, RTL layout, contact form submission
-Deployment
+Every push to `main` deploys automatically to Cloudflare Pages.
 
-Every push to main deploys automatically to Vercel. Pull requests get their own preview URL.
+Single-page routing (for example `/hafco`) is handled by a `public/_redirects` file:
 
-Contact
-Email: a.rahmanmohamed2002@gmail.com
-LinkedIn: linkedin.com/in/abdelrahman-mohamed
-GitHub: github.com/a-rahman-25
-License
+```
+/*  /index.html  200
+```
 
-The source code is available under the MIT License. Case study content, screenshots and design work © Abdelrahman Mohamed. All rights reserved.
+To update the CV, replace `public/Abdelrahman_Mohamed_CV.pdf` and push. The download link stays the same.
+
+## Contact
+
+- **Email:** a.rahmanmohamed2002@gmail.com
+- **LinkedIn:** [linkedin.com/in/arahman-dev](https://www.linkedin.com/in/arahman-dev)
+- **GitHub:** [github.com/a-rahman-25](https://github.com/a-rahman-25)
+- **Location:** Dammam, Saudi Arabia
+
+## License
+
+Source code is available under the MIT License.
+Case study content, screenshots and design work © Abdelrahman Mohamed. All rights reserved. Company names belong to their respective owners.

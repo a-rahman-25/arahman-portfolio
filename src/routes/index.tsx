@@ -13,11 +13,12 @@ const screenshots = import.meta.glob("/src/assets/projects/*.webp", { eager: tru
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Abdelrahman Mohamed · Full Stack Engineer" },
-      { name: "description", content: "Full stack engineer in Dammam who built a 13-module bilingual ERP solo. ERP, mobile apps, AI document automation and Saudi integrations." },
-      { property: "og:title", content: "Abdelrahman Mohamed · Full Stack Engineer" },
-      { property: "og:description", content: "13-module ERP built solo, from the database to Google Play. Bilingual EN/AR portfolio and concept redesigns." },
+      { title: "Abdelrahman Mohamed · Full Stack Software Engineer" },
+      { name: "description", content: "Full stack engineer in Dammam who built a 13-module bilingual ERP solo: React, TypeScript, PostgreSQL, ZATCA and AI OCR." },
+      { property: "og:title", content: "Abdelrahman Mohamed · Full Stack Software Engineer" },
+      { property: "og:description", content: "Full stack engineer in Dammam who built a 13-module bilingual ERP solo: React, TypeScript, PostgreSQL, ZATCA and AI OCR." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://arahman.pages.dev/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -467,7 +468,7 @@ function Contact({ lang }: { lang: Lang }) {
             <Reveal><CopyCard icon={Mail} label={lang === "en" ? "Email" : "البريد الإلكتروني"} value={EMAIL} href={`mailto:${EMAIL}`} lang={lang} /></Reveal>
             <div className="rounded-lg border border-border bg-card p-5"><p className="text-sm text-muted-foreground">{lang === "en" ? "Phone & WhatsApp" : "الهاتف وواتساب"}</p><p dir="ltr" className="mt-2 font-medium">{PHONE}</p><div className="mt-4 flex gap-3"><Button asChild variant="outline"><a href={PHONE_URL}><Smartphone className="h-4 w-4"/>{lang === "en" ? "Call" : "اتصال"}</a></Button><Button asChild><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp<ArrowUpRight className="h-4 w-4"/></a></Button></div></div>
             <Reveal delay={60}><CopyCard icon={Github} label="GitHub" value={GITHUB} href={GITHUB} lang={lang} /></Reveal>
-            <Reveal delay={120}><CopyCard icon={Linkedin} label="LinkedIn" value={LINKEDIN} href={LINKEDIN} lang={lang} /></Reveal>
+            <Reveal delay={120}><CopyCard icon={Linkedin} label="LinkedIn" value="linkedin.com/in/arahman-dev" href={LINKEDIN} lang={lang} /></Reveal>
             <Reveal delay={180}><CopyCard icon={MapPin} label={c.location} value={c.locationValue} lang={lang} /></Reveal>
           </div>
           <Reveal delay={100}>

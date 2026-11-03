@@ -13,3 +13,4 @@
 - Bilingual copy lives in src/lib/content.ts; Arabic toggles dir=rtl on <html>.
 - Project screenshots are bundled and rendered in alternating unpinned timeline rows; this avoids asset failures and scroll traps.
 - Hafco has a dedicated bilingual case-study route; distinguish company website pictures and links from ERP evidence to prevent misleading claims.
+- Page metadata belongs in leaf route head() definitions, not a static index.html, because TanStack Start renders the document head during SSR.
