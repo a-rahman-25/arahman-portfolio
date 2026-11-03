@@ -310,7 +310,7 @@ function Services({ lang }: { lang: Lang }) {
     <Kicker>{c.servicesKicker}</Kicker><h2 className="font-display text-4xl font-semibold">{c.servicesTitle}</h2>
     <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{c.services.map((service,i) => {
       const Icon = serviceIcons[i] ?? Boxes;
-      return <article key={service.title} className="rounded-lg border border-border bg-card p-6"><Icon className="h-9 w-9 text-gold"/><h3 className="mt-6 font-display text-2xl">{service.title}</h3><p className="mt-3 text-muted-foreground">{service.desc}</p></article>;
+      return <ScrollFrame key={service.title} side={i % 2 ? -1 : 1}><article className="h-full rounded-lg border border-border bg-card p-6"><Icon className="h-9 w-9 text-gold"/><h3 className="mt-6 font-display text-2xl">{service.title}</h3><p className="mt-3 text-muted-foreground">{service.desc}</p></article></ScrollFrame>;
     })}</div></div></section>;
 }
 
@@ -359,12 +359,12 @@ function Work({ lang, onPreview }: { lang: Lang; onPreview: (p: Project) => void
       <span className="absolute -start-8 top-0 bg-background px-1 font-display text-gold md:-start-14">{String(i+1).padStart(2,"0")}</span>
       <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
         <div className={i % 2 ? "lg:order-2" : ""}><ScrollFrame side={i % 2 ? -1 : 1}><ShotRotator p={p} lang={lang}/></ScrollFrame>{p.id === "hafco-erp" && <p className="mt-3 text-xs text-muted-foreground">{lang === "en" ? "Real ERP screens from the demo (sample data)." : "شاشات حقيقية من العرض التجريبي (بيانات وهمية)."}</p>}</div>
-        <div className={i % 2 ? "lg:order-1" : ""}><p className="text-sm text-gold">{p.year ? `${p.year} · ` : ""}{p.kind[lang]}</p><h3 className="mt-3 font-display text-3xl font-semibold">{p.title[lang]}</h3><p className="mt-5 leading-relaxed text-muted-foreground">{p.desc[lang]}</p>
+        <div className={i % 2 ? "lg:order-1" : ""}><ScrollFrame side={i % 2 ? 1 : -1}><p className="text-sm text-gold">{p.year ? `${p.year} · ` : ""}{p.kind[lang]}</p><h3 className="mt-3 font-display text-3xl font-semibold">{p.title[lang]}</h3><p className="mt-5 leading-relaxed text-muted-foreground">{p.desc[lang]}</p>
           {p.disclaimer && <p className="mt-4 text-sm text-muted-foreground">{p.disclaimer[lang]}</p>}
           {p.idea && <div className="mt-6 border-s-2 border-gold ps-4"><h4 className="text-sm text-gold">{lang === "en" ? "Design idea" : "فكرة التصميم"}</h4><p className="mt-2 text-muted-foreground">{p.idea[lang]}</p></div>}
           {p.tools && <><h4 className="mt-6 text-sm text-gold">{lang === "en" ? "Tools & integrations" : "الأدوات والتكاملات"}</h4><Tags tags={p.tools}/></>}
           <Tags tags={p.tags}/>{p.id === "hafco-erp" ? <div className="mt-6 flex flex-wrap gap-3"><Button asChild><a href={p.url} target="_blank" rel="noreferrer">{lang === "en" ? "Try the ERP demo" : "جرّب النظام"}<ArrowUpRight className="h-4 w-4 rtl:-scale-x-100"/></a></Button><Button asChild variant="outline"><Link to="/hafco">{lang === "en" ? "Read case study" : "دراسة المشروع"}</Link></Button></div> : <Actions p={p} lang={lang} onPreview={onPreview}/>}
-        </div></article></li>)}</ol>
+        </ScrollFrame></div></article></li>)}</ol>
   </div></section>;
 }
 
