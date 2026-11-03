@@ -13,7 +13,7 @@ Bilingual (English / العربية), with a full right-to-left layout for Arabi
 
 This site presents my work as a full stack engineer: a flagship ERP case study with a live demo, a company website, concept redesigns, and my own product, MergesPDF.
 
-The main project is **Hafco Base**, a bilingual 13-module ERP I built as the sole developer for HAFCO Big Movers, a heavy-transport company in Dammam. It covers fleet, HR and payroll, accounting, procurement and trip invoicing, with ZATCA e-invoicing, Saudi government integrations (Qiwa, Muqeem, Bayan) and an Android driver app on Google Play.
+The main project is **Hafco Base**, a bilingual 13-module ERP I built as the sole developer for HAFCO Big Movers, a heavy-transport company in Dammam. It covers fleet, HR and payroll, accounting, procurement and invoicing, with ZATCA e-invoicing, Saudi government integrations (Qiwa, Muqeem, Bayan) and an Android driver app on Google Play.
 
 ## Pages
 
@@ -44,6 +44,7 @@ The main project is **Hafco Base**, a bilingual 13-module ERP I built as the sol
 ## Features
 
 - 🌐 **Bilingual EN / AR**: one-click language switch, with `lang` and `dir` updated so Arabic renders fully right-to-left
+- ⚡ **Server-side rendering**: pages arrive as complete HTML, so the title and link-preview tags are visible to LinkedIn, WhatsApp and search engines
 - 📂 **Case study page** with measured results, key technical decisions and an architecture diagram
 - 🎞️ **Scroll animations**: sections reveal as they enter the viewport (IntersectionObserver + CSS keyframes), and the key numbers count up
 - 🖼️ **Project previews**: screen galleries for each project, with descriptive alt text
@@ -55,11 +56,13 @@ The main project is **Hafco Base**, a bilingual 13-module ERP I built as the sol
 
 | Area | Tools |
 |---|---|
-| Framework | React, TypeScript, Vite |
-| Routing | React Router |
+| Framework | React, TypeScript, TanStack Start (server-side rendering) |
+| Routing | TanStack Router (file-based routes) |
 | Styling | Tailwind CSS |
+| Icons | Lucide |
+| Fonts | Syne, Plus Jakarta Sans, IBM Plex Sans Arabic, Cairo |
 | Animation | CSS keyframes, IntersectionObserver |
-| Hosting | Cloudflare Pages, auto-deploy from GitHub |
+| Hosting | Cloudflare, auto-deploy from GitHub |
 
 ## Getting Started
 
@@ -77,19 +80,15 @@ npm run dev
 | Command | What it does |
 |---|---|
 | `npm run dev` | Start the dev server |
-| `npm run build` | Production build into `dist/` |
+| `npm run build` | Production build |
 | `npm run preview` | Preview the production build locally |
 | `npm run lint` | Lint the code |
 
 ## Deployment
 
-Every push to `main` deploys automatically to Cloudflare Pages.
+Every push to `main` deploys automatically to Cloudflare.
 
-Single-page routing (for example `/hafco`) is handled by a `public/_redirects` file:
-
-```
-/*  /index.html  200
-```
+Pages are rendered on the server, so titles and link-preview tags are in the HTML that LinkedIn, WhatsApp and search engines read.
 
 To update the CV, replace `public/Abdelrahman_Mohamed_CV.pdf` and push. The download link stays the same.
 
