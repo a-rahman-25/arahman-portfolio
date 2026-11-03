@@ -16,6 +16,7 @@ export type Project = {
   tools?: string[];
   idea?: Record<Lang, string>;
   disclaimer?: Record<Lang, string>;
+  company?: string;
   tags: string[];
   title: Record<Lang, string>;
   kind: Record<Lang, string>;
@@ -56,6 +57,7 @@ export const projects: Project[] = [
   },
   {
     id: "elite-ticaret",
+    company: "Elite Ticaret",
     url: "https://elite-ticaret.pages.dev/",
     host: "elite-ticaret.pages.dev",
     hue: 30,
@@ -69,6 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: "elite-saudi",
+    company: "Elite Saudi",
     url: "https://elite-saudi-redefined.pages.dev/",
     host: "elite-saudi-redefined.pages.dev",
     hue: 150,
@@ -82,6 +85,7 @@ export const projects: Project[] = [
   },
   {
     id: "shajarah",
+    company: "Al-Shajarah",
     url: "https://al-shajarah-reimagined.pages.dev/",
     host: "al-shajarah-reimagined.pages.dev",
     hue: 130,
@@ -95,6 +99,7 @@ export const projects: Project[] = [
   },
   {
     id: "prime-elite",
+    company: "Prime Elite",
     url: "https://prime-elite-web.pages.dev/",
     host: "prime-elite-web.pages.dev",
     hue: 250,
@@ -108,6 +113,7 @@ export const projects: Project[] = [
   },
   {
     id: "khaldi",
+    company: "Al-Khaldi",
     url: "https://al-khaldi-legacy.pages.dev/",
     host: "al-khaldi-legacy.pages.dev",
     hue: 55,
@@ -121,6 +127,7 @@ export const projects: Project[] = [
   },
   {
     id: "keo",
+    company: "KEO International Consultants",
     url: "https://keo-heritage-reimagined.pages.dev/",
     host: "keo-heritage-reimagined.pages.dev",
     hue: 15,
@@ -134,6 +141,7 @@ export const projects: Project[] = [
   },
   {
     id: "sahara",
+    company: "Semi Sahara",
     url: "https://semi-sahara-studio.pages.dev/",
     host: "semi-sahara-studio.pages.dev",
     hue: 45,
@@ -163,8 +171,8 @@ export const projects: Project[] = [
 for (const project of projects) {
   if (project.kind.en === "Concept redesign") {
     project.disclaimer = {
-      en: `Unofficial concept, not affiliated with ${project.title.en}.`,
-      ar: `تصوّر غير رسمي، غير تابع لـ ${project.title.ar}.`,
+      en: `Unofficial concept, not affiliated with ${project.company ?? project.title.en}.`,
+      ar: `تصوّر غير رسمي، غير تابع لـ ${project.company ?? project.title.ar}.`,
     };
   }
 }
