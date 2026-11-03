@@ -240,6 +240,7 @@ function Hero({ lang }: { lang: Lang }) {
           <Reveal delay={300} className="mt-10 flex flex-wrap gap-4">
             <a href="#work" {...magnetic} className="magnetic inline-flex items-center gap-2 rounded-xl bg-gold px-7 py-4 font-semibold text-primary-foreground shadow-lg">
               {c.ctaWork}<ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" /></a>
+            <a href="/Abdelrahman_Mohamed_CV.pdf" download {...magnetic} className="magnetic inline-flex items-center gap-2 rounded-xl border border-gold/60 px-7 py-4 font-semibold hover:bg-accent">{lang === "en" ? "Download CV" : "تحميل السيرة الذاتية"}</a>
             <a href="#contact" {...magnetic} className="magnetic inline-flex items-center gap-2 rounded-xl border border-gold/60 px-7 py-4 font-semibold hover:bg-accent">{c.ctaContact}</a>
           </Reveal>
         </div>
