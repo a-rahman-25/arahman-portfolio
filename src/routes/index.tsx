@@ -326,6 +326,30 @@ function ShotRotator({ p, lang }: { p: Project; lang: Lang }) {
   </div>;
 }
 
+function ScrollFrame({ children, side }: { children: React.ReactNode; side: 1 | -1 }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = el.getBoundingClientRect(); const vh = window.innerHeight;
+      // -1 (below viewport) .. 0 (centered) .. 1 (above)
+      const p = Math.max(-1, Math.min(1, (vh / 2 - (r.top + r.height / 2)) / (vh / 2 + r.height / 2)));
+      const a = Math.abs(p);
+      const mobile = window.innerWidth < 1024;
+      el.style.transform = `perspective(1400px) translate3d(${mobile ? 0 : side * (1 - Math.cos(p * 1.2)) * -90}px, ${p * -40}px, 0) rotateY(${mobile ? 0 : side * p * -8}deg) rotateX(${p * 6}deg) scale(${1 - a * 0.1})`;
+      el.style.opacity = String(Math.max(0.25, 1 - a * 0.9));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); cancelAnimationFrame(raf); };
+  }, [side]);
+  return <div ref={ref} style={{ willChange: "transform, opacity", transformOrigin: "50% 50%" }}>{children}</div>;
+}
+
 function Work({ lang, onPreview }: { lang: Lang; onPreview: (p: Project) => void }) {
   const c = t[lang];
   return <section id="work" className="px-4 py-24 md:px-8"><div className="mx-auto max-w-7xl">
