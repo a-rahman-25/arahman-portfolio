@@ -1,18 +1,22 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ElementType, type MouseEvent, type ReactNode } from "react";
 import {
   ArrowUpRight, Boxes, Check, Copy, Eye, FileScan, Github, Globe, Landmark, Linkedin, Mail,
   MapPin, Menu, Send, Smartphone, X,
 } from "lucide-react";
-import { buildMailto, EMAIL, GITHUB, LINKEDIN, projects, t, type Lang, type Project } from "@/lib/content";
+import { buildMailto, PHONE, PHONE_URL, WHATSAPP_URL, EMAIL, GITHUB, LINKEDIN, projects, t, type Lang, type Project } from "@/lib/content";
+
+import amLogo from "@/assets/am-logo.png";
+import { Button } from "@/components/ui/button";
+const screenshots = import.meta.glob("/src/assets/projects/*.webp", { eager: true, import: "default" }) as Record<string, string>;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Abdelrahman Mohamed · Full Stack Engineer | AM Launch Web" },
+      { title: "Abdelrahman Mohamed · Full Stack Engineer" },
       { name: "description", content: "Full stack engineer in Dammam who built a 13-module bilingual ERP solo. ERP, mobile apps, AI document automation and Saudi integrations." },
       { property: "og:title", content: "Abdelrahman Mohamed · Full Stack Engineer" },
-      { property: "og:description", content: "13-module ERP built solo, from the database to Google Play. Bilingual EN/AR portfolio and client redesigns." },
+      { property: "og:description", content: "13-module ERP built solo, from the database to Google Play. Bilingual EN/AR portfolio and concept redesigns." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -43,41 +47,6 @@ const magnetic = {
   },
   onMouseLeave: reset,
 };
-
-function useScrollLinkedFrames() {
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
-    const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
-    const update = () => {
-      const frames = Array.from(document.querySelectorAll<HTMLElement>(".stack-frame"));
-      const vh = window.innerHeight;
-      frames.forEach((frame, i) => {
-        const next = frames[i + 1];
-        let cover = 0;
-        if (next) cover = clamp01((vh - next.getBoundingClientRect().top) / vh);
-        frame.style.setProperty("--frame-cover", cover.toFixed(4));
-      });
-      const hero = document.getElementById("top");
-      if (hero) {
-        const r = hero.getBoundingClientRect();
-        hero.style.setProperty("--hero-exit", clamp01(-r.top / Math.max(r.height * 0.85, 1)).toFixed(4));
-      }
-      const chapter = document.querySelector<HTMLElement>(".services-chapter");
-      if (chapter) {
-        const r = chapter.getBoundingClientRect();
-        const p = clamp01(-r.top / Math.max(r.height - vh, 1));
-        chapter.style.setProperty("--feed-progress", `${(p * 100).toFixed(2)}%`);
-        chapter.dispatchEvent(new CustomEvent("feed", { detail: p }));
-      }
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; update(); }); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); cancelAnimationFrame(raf); };
-  }, []);
-}
 
 function Reveal({ children, className = "", delay = 0, as: Tag = "div" }: { children: ReactNode; className?: string; delay?: number; as?: ElementType }) {
   const ref = useRef<HTMLElement | null>(null);
@@ -123,21 +92,16 @@ function CountUp({ target, suffix, display }: { target: number; suffix: string; 
     io.observe(el);
     return () => { io.disconnect(); cancelAnimationFrame(raf); };
   }, [target]);
-  return <strong ref={ref} dir="ltr" className="block font-display text-4xl font-semibold text-gold md:text-5xl">{target === 0 ? display : `${n}${suffix}`}</strong>;
+  return <strong ref={ref} dir="ltr" className={`block font-display font-semibold text-gold ${display && display.length > 10 ? "text-2xl md:text-3xl" : "text-4xl md:text-5xl"}`}>{target === 0 ? display : `${n}${suffix}`}</strong>;
 }
 
 function Logo() {
   return (
     <span className="flex items-center gap-3">
-      <svg viewBox="0 0 64 64" className="h-10 w-10" aria-hidden>
-        <rect width="64" height="64" rx="14" className="fill-forest" />
-        <rect x="1" y="1" width="62" height="62" rx="13" fill="none" className="stroke-gold" strokeOpacity=".5" />
-        <path d="M14 46 26 16h4l12 30h-6l-3-8H22l-3 8zm10-13h8l-4-11z" className="fill-gold" />
-        <path d="M40 46V22h5l4 10 4-10h5v24h-5V32l-4 9-4-9v14z" className="fill-gold" opacity=".8" />
-      </svg>
+      <img src={amLogo} alt="AM" className="h-10 w-10 object-contain" />
       <span className="leading-tight">
         <span className="block font-display text-base font-semibold">Abdelrahman</span>
-        <span className="no-ar-track block text-[0.65rem] uppercase tracking-[0.2em] text-gold">AM Launch Web</span>
+        <span className="no-ar-track block text-[0.65rem] uppercase tracking-[0.2em] text-gold">Full Stack Engineer</span>
       </span>
     </span>
   );
@@ -263,7 +227,7 @@ const slides = [DashboardArt, PhoneArt, DocArt];
 function Hero({ lang }: { lang: Lang }) {
   const c = t[lang];
   return (
-    <section id="top" className="hero-stage relative flex min-h-[100svh] items-center overflow-hidden px-4 pb-16 pt-32 md:px-8">
+    <section id="top" className="hero-stage relative flex min-h-[85svh] items-center overflow-hidden px-4 pb-16 pt-32 md:px-8">
       <div aria-hidden className="pointer-events-none absolute -end-40 top-20 h-[36rem] w-[36rem] rounded-full border border-gold/20 animate-spin-slow">
         <div className="absolute start-1/2 top-0 h-3 w-3 rounded-full bg-gold" />
       </div>
@@ -271,7 +235,7 @@ function Hero({ lang }: { lang: Lang }) {
         <div>
           <Reveal><p className="no-ar-track mb-6 inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs uppercase tracking-[0.18em] text-gold">
             <span className="h-2 w-2 animate-pulse rounded-full bg-gold" />{c.role}</p></Reveal>
-          <Reveal delay={100}><h1 className="font-display text-4xl leading-[1.08] font-semibold text-balance md:text-6xl lg:text-7xl">{c.hero}</h1></Reveal>
+          <div><h1 className="font-display text-4xl leading-[1.08] font-semibold text-balance md:text-6xl lg:text-7xl">{c.hero}</h1></div>
           <Reveal delay={200}><p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">{c.bio}</p></Reveal>
           <Reveal delay={300} className="mt-10 flex flex-wrap gap-4">
             <a href="#work" {...magnetic} className="magnetic inline-flex items-center gap-2 rounded-xl bg-gold px-7 py-4 font-semibold text-primary-foreground shadow-lg">
@@ -318,8 +282,8 @@ function Kicker({ children }: { children: ReactNode }) {
 function About({ lang }: { lang: Lang }) {
   const c = t[lang];
   return (
-    <section id="about" className="stack-frame sticky top-0 bg-card px-4 py-24 md:px-8 md:py-32">
-      <div className="stack-frame-body mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+    <section id="about" className="bg-card px-4 py-24 md:px-8 md:py-32">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <Reveal><Kicker>{c.aboutKicker}</Kicker></Reveal>
           <Reveal delay={100}><h2 className="font-display text-4xl font-semibold md:text-5xl">{c.aboutTitle}</h2></Reveal>
@@ -341,139 +305,42 @@ const serviceIcons = [Boxes, Smartphone, FileScan, Landmark, Globe];
 
 function Services({ lang }: { lang: Lang }) {
   const c = t[lang];
-  const ref = useRef<HTMLElement>(null);
-  const reelRef = useRef<HTMLDivElement>(null);
-  const windowRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const onFeed = (e: Event) => {
-      const p = (e as CustomEvent<number>).detail;
-      const reel = reelRef.current, win = windowRef.current;
-      if (reel && win) {
-        const max = Math.max(reel.scrollHeight - win.clientHeight, 0);
-        reel.style.transform = `translate3d(0, ${-p * max}px, 0)`;
-      }
-      setActive(Math.min(c.services.length - 1, Math.floor(p * c.services.length)));
-    };
-    el.addEventListener("feed", onFeed);
-    return () => el.removeEventListener("feed", onFeed);
-  }, [c.services.length]);
-  return (
-    <section id="services" ref={ref} className="services-chapter stack-frame bg-forest">
-      <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden px-4 md:px-8">
-        {c.services.map((_, i) => (
-          <div key={i} aria-hidden className={`service-backdrop ${i === active ? "is-active" : ""}`}
-            style={{ background: `radial-gradient(ellipse at ${20 + i * 15}% 40%, oklch(0.32 0.07 ${80 + i * 20} / .55), transparent 60%)` }} />
-        ))}
-        <div className="relative z-[2] mx-auto grid w-full max-w-7xl items-center gap-10 lg:grid-cols-[0.8fr_0.7fr] lg:gap-24">
-          <div>
-            <Kicker>{c.servicesKicker}</Kicker>
-            <h2 className="font-display text-4xl font-semibold md:text-5xl">{c.servicesTitle}</h2>
-            <p className="mt-6 flex items-baseline gap-2" dir="ltr">
-              <strong className="font-display text-5xl text-gold">0{active + 1}</strong>
-              <span className="text-muted-foreground">/ 0{c.services.length}</span>
-            </p>
-            <p className="no-ar-track mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold">{c.servicesCue}</p>
-            <div className="service-feed-progress mt-4 h-0.5 w-48 bg-border"><span /></div>
-          </div>
-          <div ref={windowRef} className="service-feed-window">
-            <div ref={reelRef} className="service-feed-reel">
-              {c.services.map((s, i) => {
-                const Icon = serviceIcons[i] ?? Boxes;
-                return (
-                  <article key={i} {...spotlight} className={`service-feed-card spot group ${i === active ? "is-active" : ""}`}>
-                    <div className="relative grid h-36 place-items-center overflow-hidden bg-gradient-to-br from-accent to-forest md:h-44">
-                      <Icon className="h-16 w-16 text-gold transition-transform duration-500 group-hover:scale-125 group-hover:-rotate-6" strokeWidth={1.2} />
-                      <span className="absolute end-4 top-4 font-display text-5xl text-gold/20" dir="ltr">0{i + 1}</span>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="font-display text-2xl font-semibold">{s.title}</h3>
-                      <p className="mt-2 text-muted-foreground">{s.desc}</p>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="services" className="px-4 py-24 md:px-8"><div className="mx-auto max-w-7xl">
+    <Kicker>{c.servicesKicker}</Kicker><h2 className="font-display text-4xl font-semibold">{c.servicesTitle}</h2>
+    <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{c.services.map((service,i) => {
+      const Icon = serviceIcons[i] ?? Boxes;
+      return <article key={service.title} className="rounded-lg border border-border bg-card p-6"><Icon className="h-9 w-9 text-gold"/><h3 className="mt-6 font-display text-2xl">{service.title}</h3><p className="mt-3 text-muted-foreground">{service.desc}</p></article>;
+    })}</div></div></section>;
 }
 
-function SiteMock({ p }: { p: Project }) {
-  const h = p.hue;
-  return (
-    <div className="relative aspect-[16/10] overflow-hidden" style={{ background: `linear-gradient(135deg, oklch(0.3 0.05 ${h}), oklch(0.17 0.03 ${h + 40}))` }}>
-      <div className="absolute inset-x-6 top-5 flex items-center justify-between">
-        <span className="h-3 w-16 rounded-full" style={{ background: `oklch(0.78 0.11 ${h})` }} />
-        <span className="h-6 w-6 rounded-md" style={{ background: `oklch(0.78 0.11 ${h})` }} />
-      </div>
-      <div className="absolute inset-x-6 top-1/3 space-y-2 transition-transform duration-700 group-hover:-translate-y-2">
-        <div className="h-4 w-3/4 rounded bg-foreground/80" />
-        <div className="h-4 w-1/2 rounded bg-foreground/60" />
-        <div className="h-2 w-2/3 rounded bg-foreground/25" />
-        <div className="mt-3 h-6 w-24 rounded-md" style={{ background: `oklch(0.78 0.11 ${h})` }} />
-      </div>
-      <div className="absolute -bottom-10 -end-10 h-40 w-40 rounded-full border transition-transform duration-700 group-hover:scale-125" style={{ borderColor: `oklch(0.78 0.11 ${h} / .5)` }} />
-      <div className="absolute inset-0 grid place-items-center bg-ink/60 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
-        <Eye className="h-10 w-10 translate-y-3 text-gold transition-transform duration-300 group-hover:translate-y-0" />
-      </div>
-    </div>
-  );
+function ShotRotator({ p, lang }: { p: Project; lang: Lang }) {
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => setActive(v => (v + 1) % 3), 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+  return <div className="overflow-hidden rounded-lg border border-border bg-card">
+    <BrowserBar host={p.host}/><div className="relative aspect-[16/10]">{[1,2,3].map((n,i) => <img key={n} src={screenshots[`/src/assets/projects/${p.id}-${n}.webp`]} alt={`${p.id === "hafco" ? (lang === "en" ? "HAFCO company website" : "موقع شركة هافكو") : p.title[lang]} — ${n}`} loading="lazy" className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${active === i ? "opacity-100" : "opacity-0"}`}/>)}</div>
+    <div className="flex justify-center gap-2 p-3">{[0,1,2].map(i => <Button key={i} size="icon" variant="ghost" aria-label={`${lang === "en" ? "Screenshot" : "صورة"} ${i+1}`} aria-pressed={i === active} onClick={() => setActive(i)} className="h-7 w-7"><span className={`h-2 w-2 rounded-full ${i === active ? "bg-gold" : "bg-muted-foreground"}`}/></Button>)}</div>
+  </div>;
 }
 
 function Work({ lang, onPreview }: { lang: Lang; onPreview: (p: Project) => void }) {
   const c = t[lang];
-  const flag = projects[0]!;
-  const rest = projects.slice(1);
-  return (
-    <section id="work" className="stack-frame bg-background px-4 py-24 md:px-8 md:py-32">
-      <div className="stack-frame-body mx-auto max-w-7xl">
-        <Reveal><Kicker>{c.workKicker}</Kicker></Reveal>
-        <Reveal delay={100}><h2 className="max-w-3xl font-display text-4xl font-semibold md:text-5xl">{c.workTitle}</h2></Reveal>
-
-        <Reveal delay={150} className="mt-14">
-          <article {...spotlight} className="spot group grid overflow-hidden rounded-3xl border border-gold/50 bg-card lg:grid-cols-2">
-            <button type="button" onClick={() => onPreview(flag)} className="relative block text-start" aria-label={`${c.preview}: ${flag.title[lang]}`}>
-              <BrowserBar host={flag.host} />
-              <div className="aspect-[16/10]"><DashboardArt /></div>
-            </button>
-            <div className="relative z-[2] flex flex-col justify-center p-8 md:p-12">
-              <p className="text-xs font-semibold uppercase text-gold">{flag.kind[lang]}</p>
-              <h3 className="mt-3 font-display text-3xl font-semibold md:text-4xl">{flag.title[lang]}</h3>
-              <p className="mt-4 text-muted-foreground">{flag.desc[lang]}</p>
-              <Tags tags={flag.tags} />
-              <Actions p={flag} lang={lang} onPreview={onPreview} />
-            </div>
-          </article>
-        </Reveal>
-
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((p, i) => (
-            <Reveal key={p.id} delay={(i % 3) * 90}>
-              <article {...tiltGlow} className="spot tilt group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card">
-                {p.url ? (
-                  <button type="button" onClick={() => onPreview(p)} className="block text-start" aria-label={`${c.preview}: ${p.title[lang]}`}>
-                    <BrowserBar host={p.host} /><SiteMock p={p} />
-                  </button>
-                ) : (<div><BrowserBar host={p.host} /><div className="aspect-[16/10]"><DocArt /></div></div>)}
-                <div className="relative z-[2] flex flex-1 flex-col p-6">
-                  <p className="text-xs font-semibold uppercase text-gold">{p.kind[lang]}</p>
-                  <h3 className="mt-2 font-display text-2xl font-semibold">{p.title[lang]}</h3>
-                  <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.desc[lang]}</p>
-                  <Tags tags={p.tags} />
-                  {p.url && <Actions p={p} lang={lang} onPreview={onPreview} />}
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="work" className="px-4 py-24 md:px-8"><div className="mx-auto max-w-7xl">
+    <Kicker>{c.workKicker}</Kicker><h2 className="max-w-3xl font-display text-4xl font-semibold md:text-5xl">{c.workTitle}</h2>
+    <ol className="mt-16 space-y-20 border-s border-border ps-5 md:ps-10">{projects.map((p,i) => <li key={p.id} className="relative">
+      <span className="absolute -start-8 top-0 bg-background px-1 font-display text-gold md:-start-14">{String(i+1).padStart(2,"0")}</span>
+      <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
+        <div className={i % 2 ? "lg:order-2" : ""}><ShotRotator p={p} lang={lang}/>{p.id === "hafco" && <p className="mt-3 text-xs text-muted-foreground">{lang === "en" ? "Company website — not the ERP interface." : "موقع الشركة — وليس واجهة نظام ERP."}</p>}</div>
+        <div className={i % 2 ? "lg:order-1" : ""}><p className="text-sm text-gold">{p.year ? `${p.year} · ` : ""}{p.kind[lang]}</p><h3 className="mt-3 font-display text-3xl font-semibold">{p.title[lang]}</h3><p className="mt-5 leading-relaxed text-muted-foreground">{p.desc[lang]}</p>
+          {p.disclaimer && <p className="mt-4 text-sm text-muted-foreground">{p.disclaimer[lang]}</p>}
+          {p.idea && <div className="mt-6 border-s-2 border-gold ps-4"><h4 className="text-sm text-gold">{lang === "en" ? "Design idea" : "فكرة التصميم"}</h4><p className="mt-2 text-muted-foreground">{p.idea[lang]}</p></div>}
+          {p.tools && <><h4 className="mt-6 text-sm text-gold">{lang === "en" ? "Tools & integrations" : "الأدوات والتكاملات"}</h4><Tags tags={p.tools}/></>}
+          <Tags tags={p.tags}/>{p.id === "hafco" ? <div className="mt-6 flex flex-wrap gap-3"><Button asChild><Link to="/hafco">{lang === "en" ? "Read case study" : "دراسة المشروع"}<ArrowUpRight className="h-4 w-4"/></Link></Button><Button asChild variant="outline"><a href={p.url} target="_blank" rel="noreferrer">{lang === "en" ? "Company website" : "موقع الشركة"}</a></Button></div> : <Actions p={p} lang={lang} onPreview={onPreview}/>}
+        </div></article></li>)}</ol>
+  </div></section>;
 }
 
 function BrowserBar({ host }: { host: string }) {
@@ -565,14 +432,15 @@ function Contact({ lang }: { lang: Lang }) {
   };
   const field = "mt-2 w-full rounded-xl border border-input bg-background/60 px-4 py-3 outline-none transition focus:border-gold focus:ring-2 focus:ring-ring/40";
   return (
-    <section id="contact" className="stack-frame bg-card px-4 py-24 md:px-8 md:py-32">
-      <div className="stack-frame-body mx-auto max-w-7xl">
+    <section id="contact" className="bg-card px-4 py-24 md:px-8 md:py-32">
+      <div className="mx-auto max-w-7xl">
         <Reveal><Kicker>{c.contactKicker}</Kicker></Reveal>
         <Reveal delay={100}><h2 className="font-display text-4xl font-semibold md:text-6xl">{c.contactTitle}</h2></Reveal>
         <Reveal delay={150}><p className="mt-4 max-w-2xl text-muted-foreground">{c.openTo}</p></Reveal>
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <div className="space-y-4">
-            <Reveal><CopyCard icon={Mail} label="Email" value={EMAIL} lang={lang} /></Reveal>
+            <Reveal><CopyCard icon={Mail} label={lang === "en" ? "Email" : "البريد الإلكتروني"} value={EMAIL} href={`mailto:${EMAIL}`} lang={lang} /></Reveal>
+            <div className="rounded-lg border border-border bg-card p-5"><p className="text-sm text-muted-foreground">{lang === "en" ? "Phone & WhatsApp" : "الهاتف وواتساب"}</p><p dir="ltr" className="mt-2 font-medium">{PHONE}</p><div className="mt-4 flex gap-3"><Button asChild variant="outline"><a href={PHONE_URL}><Smartphone className="h-4 w-4"/>{lang === "en" ? "Call" : "اتصال"}</a></Button><Button asChild><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp<ArrowUpRight className="h-4 w-4"/></a></Button></div></div>
             <Reveal delay={60}><CopyCard icon={Github} label="GitHub" value={GITHUB} href={GITHUB} lang={lang} /></Reveal>
             <Reveal delay={120}><CopyCard icon={Linkedin} label="LinkedIn" value={LINKEDIN} href={LINKEDIN} lang={lang} /></Reveal>
             <Reveal delay={180}><CopyCard icon={MapPin} label={c.location} value={c.locationValue} lang={lang} /></Reveal>
@@ -604,7 +472,6 @@ function Contact({ lang }: { lang: Lang }) {
 function Index() {
   const [lang, setLangState] = useState<Lang>("en");
   const [preview, setPreview] = useState<Project | null>(null);
-  useScrollLinkedFrames();
   useEffect(() => {
     const saved = localStorage.getItem("lang");
     if (saved === "ar" || saved === "en") setLangState(saved);

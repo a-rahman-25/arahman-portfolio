@@ -1,0 +1,11 @@
+# Portfolio checklist
+- [x] Correct concept labels and remove unconfirmed concept dates.
+- [x] Set Hafco dates to 2025–Present and add its case study.
+- [x] Show the headline immediately; remove scroll-pinned presentation.
+- [x] Correct Hafco company website imagery labels and links.
+- [ ] Replace company website pictures with actual ERP screenshots — awaiting user-provided screenshots and approved demo URL.
+- [x] Update payroll statistic and avoid duplicate project tags.
+- [x] Verify contact message handoff.
+- [ ] Confirm LinkedIn profile identity — LinkedIn returned a verification challenge; awaiting confirmed profile URL.
+- [x] Align README with the actual app.
+- CV deferred by request.
