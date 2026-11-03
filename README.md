@@ -8,7 +8,7 @@ About
 
 This site presents my work as a full stack engineer: case studies of production systems I've built, a design gallery, and a way to get in touch.
 
-The main case study is Hafco Base, a bilingual 13-module ERP I built solo for a heavy-transport company, covering fleet, HR and payroll, accounting, procurement, trip invoicing, Saudi government integrations (ZATCA, Qiwa, Muqeem, Bayan) and an Android driver app on Google Play.
+The main case study is Hafco Base, a bilingual 13-module ERP I built solo for a heavy-transport company, covering fleet, HR and payroll, accounting, procurement, invoicing, Saudi government integrations (ZATCA, Qiwa, Muqeem, Bayan) and an Android driver app on Google Play.
 
 Features
 🌐 Bilingual EN / AR: full right-to-left layout for Arabic, not just translated text
