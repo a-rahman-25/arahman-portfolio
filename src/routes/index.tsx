@@ -326,7 +326,7 @@ function ShotRotator({ p, lang }: { p: Project; lang: Lang }) {
   </div>;
 }
 
-function ScrollFrame({ children, side }: { children: React.ReactNode; side: 1 | -1 }) {
+function ScrollFrame({ children, side }: { children: ReactNode; side: 1 | -1 }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current; if (!el) return;
