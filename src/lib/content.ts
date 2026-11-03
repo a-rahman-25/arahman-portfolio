@@ -36,8 +36,8 @@ export const projects: Project[] = [
     title: { en: "Hafco Base ERP", ar: "نظام Hafco Base ERP" },
     kind: { en: "Flagship enterprise system · live demo", ar: "النظام المؤسسي الرئيسي · عرض تجريبي" },
     desc: {
-      en: "A bilingual 13-module ERP for a heavy-transport company: fleet, HR & payroll, accounting, procurement and trip invoicing, with ZATCA e-invoicing, an Android driver app on Google Play and Saudi government integrations. The demo uses sample data only.",
-      ar: "نظام ERP ثنائي اللغة من 13 وحدة لشركة نقل ثقيل: الأسطول، الموارد البشرية والرواتب، المحاسبة، المشتريات وفواتير الرحلات، مع فوترة ZATCA الإلكترونية وتطبيق سائقين على Google Play وتكامل مع المنصات الحكومية. العرض التجريبي ببيانات وهمية فقط.",
+      en: "A bilingual 13-module ERP for a heavy-transport company: fleet, HR & payroll, accounting, procurement and invoicing, with ZATCA e-invoicing, an Android driver app on Google Play and Saudi government integrations. The demo uses sample data only.",
+      ar: "نظام ERP ثنائي اللغة من 13 وحدة لشركة نقل ثقيل: الأسطول، الموارد البشرية والرواتب، المحاسبة، المشتريات والفوترة، مع فوترة ZATCA الإلكترونية وتطبيق سائقين على Google Play وتكامل مع المنصات الحكومية. العرض التجريبي ببيانات وهمية فقط.",
     },
   },
   {
@@ -183,7 +183,7 @@ export const caseStudy = {
   en: { back: "Back to portfolio", title: "Hafco Base ERP", role: "Sole developer · 2025–Present", intro: "A bilingual 13-module ERP for HAFCO Big Movers in Dammam, Saudi Arabia.", demo: "Try the demo", demoNote: "Demo runs on sample data only.", sections: [
     { title: "The challenge", body: "Replace spreadsheets and paperwork with a connected system for heavy-transport operations, HR, payroll and finance." },
     { title: "My role", body: "I gathered requirements with each department, designed the database and built the web system and Android driver app, shipped to Google Play." },
-    { title: "System design", body: "Fleet, HR and payroll, accounting, procurement and trip invoicing share one bilingual workspace, backed by PostgreSQL with row-level security." },
+    { title: "System design", body: "Fleet, HR and payroll, accounting, procurement and invoicing share one bilingual workspace, backed by PostgreSQL with row-level security." },
     { title: "Integrations", body: "ZATCA e-invoicing and Saudi government platforms Qiwa, Muqeem and Bayan connect business operations to external services." },
   ],
   decisionsTitle: "Key technical decisions", decisions: [
@@ -203,7 +203,7 @@ export const caseStudy = {
   ar: { back: "العودة إلى الأعمال", title: "نظام Hafco Base ERP", role: "المطور الوحيد · 2025–الآن", intro: "نظام ERP ثنائي اللغة من 13 وحدة لشركة هافكو للنقل الثقيل في الدمام، السعودية.", demo: "جرّب العرض التجريبي", demoNote: "العرض التجريبي ببيانات وهمية فقط.", sections: [
     { title: "التحدي", body: "استبدال الجداول والأوراق بنظام مترابط لعمليات النقل الثقيل والموارد البشرية والرواتب والمالية." },
     { title: "دوري", body: "جمعت المتطلبات مع كل قسم، وصممت قاعدة البيانات وبنيت نظام الويب وتطبيق السائقين لأندرويد ونشرته على Google Play." },
-    { title: "تصميم النظام", body: "الأسطول والموارد البشرية والرواتب والمحاسبة والمشتريات وفواتير الرحلات في مساحة عمل ثنائية اللغة، على PostgreSQL مع أمان على مستوى الصفوف." },
+    { title: "تصميم النظام", body: "الأسطول والموارد البشرية والرواتب والمحاسبة والمشتريات والفوترة في مساحة عمل ثنائية اللغة، على PostgreSQL مع أمان على مستوى الصفوف." },
     { title: "التكاملات", body: "الفوترة الإلكترونية من ZATCA والمنصات الحكومية قوى ومقيم وبيان تربط العمليات بالخدمات الخارجية." },
   ],
   decisionsTitle: "قرارات تقنية رئيسية", decisions: [
@@ -242,7 +242,7 @@ export const t = {
     aboutTitle: "Software that holds up in real use.",
     about: [
       "I’m Abdelrahman Mohamed, a full stack software engineer working with TypeScript, React and PostgreSQL.",
-      "At HAFCO Big Movers, a heavy-transport company in Dammam, I’m the sole developer behind Hafco Base, a bilingual 13-module ERP covering fleet, HR and payroll, accounting, procurement and trip invoicing. I took it from gathering requirements with each department, to designing the database, to shipping an Android driver app on Google Play. Along the way I integrated ZATCA e-invoicing and Saudi government platforms like Qiwa, Muqeem and Bayan. I automated payroll for 190 employees from days to seconds, and cut document entry from minutes to seconds with AI-powered OCR.",
+      "At HAFCO Big Movers, a heavy-transport company in Dammam, I’m the sole developer behind Hafco Base, a bilingual 13-module ERP covering fleet, HR and payroll, accounting, procurement and invoicing. I took it from gathering requirements with each department, to designing the database, to shipping an Android driver app on Google Play. Along the way I integrated ZATCA e-invoicing and Saudi government platforms like Qiwa, Muqeem and Bayan. I automated payroll for 190 employees from days to seconds, and cut document entry from minutes to seconds with AI-powered OCR.",
       "I care about software that holds up in real use: secure access rules, apps that work on weak mobile networks, and Arabic interfaces that are designed for right-to-left from the start, not added later.",
       "Outside work I build MergesPDF, a privacy-first PDF toolkit.",
       "I hold a B.Sc. in Computing & Information Systems from the Arab Academy for Science and Technology, and I speak Arabic and English.",
@@ -293,7 +293,7 @@ export const t = {
     aboutTitle: "برمجيات تصمد في الاستخدام الفعلي.",
     about: [
       "أنا عبدالرحمن محمد، مهندس برمجيات Full Stack أعمل بـ TypeScript وReact وPostgreSQL.",
-      "في شركة هافكو للنقل الثقيل بالدمام، أنا المطور الوحيد لنظام Hafco Base، نظام ERP ثنائي اللغة من 13 وحدة يشمل الأسطول، الموارد البشرية والرواتب، المحاسبة، المشتريات، وفواتير الرحلات. توليت المشروع من جمع المتطلبات مع كل قسم، إلى تصميم قاعدة البيانات، حتى نشر تطبيق السائقين على Google Play. وخلال ذلك ربطت النظام بالفوترة الإلكترونية من ZATCA وبالمنصات الحكومية مثل قوى ومقيم وبيان. أتمتت مسيّر الرواتب لـ 190 موظفاً من أيام إلى ثوانٍ، واختصرت إدخال المستندات من دقائق إلى ثوانٍ باستخدام OCR بالذكاء الاصطناعي.",
+      "في شركة هافكو للنقل الثقيل بالدمام، أنا المطور الوحيد لنظام Hafco Base، نظام ERP ثنائي اللغة من 13 وحدة يشمل الأسطول، الموارد البشرية والرواتب، المحاسبة، المشتريات، والفوترة. توليت المشروع من جمع المتطلبات مع كل قسم، إلى تصميم قاعدة البيانات، حتى نشر تطبيق السائقين على Google Play. وخلال ذلك ربطت النظام بالفوترة الإلكترونية من ZATCA وبالمنصات الحكومية مثل قوى ومقيم وبيان. أتمتت مسيّر الرواتب لـ 190 موظفاً من أيام إلى ثوانٍ، واختصرت إدخال المستندات من دقائق إلى ثوانٍ باستخدام OCR بالذكاء الاصطناعي.",
       "يهمني أن تصمد البرمجيات في الاستخدام الفعلي: صلاحيات وصول آمنة، تطبيقات تعمل على شبكات الجوال الضعيفة، وواجهات عربية مصممة من البداية للكتابة من اليمين لليسار وليست مضافة لاحقاً.",
       "خارج العمل أطوّر MergesPDF، أداة PDF تحافظ على الخصوصية.",
       "حاصل على بكالوريوس الحوسبة ونظم المعلومات من الأكاديمية العربية للعلوم والتكنولوجيا، وأتحدث العربية والإنجليزية.",
