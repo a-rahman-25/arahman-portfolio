@@ -13,11 +13,11 @@ The main case study is Hafco Base, a bilingual 13-module ERP I built solo for a 
 ## Features
 
 - 🌐 **Bilingual EN / AR**: full right-to-left layout for Arabic, not just translated text
-- 📂 **Case studies**: problem, role, architecture, key technical decisions and measured results for each project
-- 🎨 **Design gallery**: UI concepts and motion work designed in Figma and built with Framer Motion
+- 📂 **Hafco case study**: challenge, role, system design, integrations and results
+- 🎨 **Design gallery**: Unofficial company concept redesigns with real rotating website screenshots
 - ✉️ **Contact form**: client-side validation with a pre-filled message via the visitor's email app, plus quick-copy contact cards
 - ♿ **Accessible**: semantic HTML, ARIA labels, keyboard navigation, visible focus states, alt text
-- ⚡ **Fast**: server-rendered pages, inline SVG/CSS imagery, optimized fonts
+- ⚡ **Fast**: server-rendered pages, bundled screenshots and SVG/CSS imagery, optimized fonts
 
 ## Case Studies
 
@@ -25,10 +25,9 @@ The main case study is Hafco Base, a bilingual 13-module ERP I built solo for a 
 | --- | --- |
 | Hafco Base | Bilingual 13-module ERP for a heavy-transport company: payroll, AI OCR, government integrations, RLS security audit |
 | Driver Portal | Android app (Capacitor) on Google Play: trip checkpoints, GPS attendance, offline-safe upload queue |
-| Kashef | AI document-extraction engine: per-document-type extraction with a queued, fault-isolated pipeline |
 | MergesPDF | Privacy-first PDF toolkit where core tools run fully in the browser, including Arabic/RTL Excel-to-PDF |
 
-> Note on the Hafco Base demo: the live demo runs on a separate database with fake sample data only. No real employee, client or financial data is used anywhere in this portfolio.
+> Hafco dates: 2025–Present. The portfolio links to a case study; displayed Hafco screenshots show the company website, not the ERP. No public ERP demo is linked.
 
 ## Tech Stack
 
@@ -37,7 +36,7 @@ The main case study is Hafco Base, a bilingual 13-module ERP I built solo for a 
 | Framework | TanStack Start (React 19), TypeScript |
 | Styling and motion | Tailwind CSS v4, CSS/SVG animation |
 | i18n | Instant EN / AR toggle, RTL-aware layout |
-| Backend | TanStack server functions |
+| Contact | Validated mailto handoff (no automatic email delivery) |
 | Testing | Vitest |
 | Quality | ESLint, Prettier |
 | Deployment | Lovable (Cloudflare), with automatic deploys from GitHub |
@@ -48,6 +47,7 @@ The main case study is Hafco Base, a bilingual 13-module ERP I built solo for a 
 ├── src/
 │   ├── routes/                # TanStack file-based routes
 │   │   ├── __root.tsx         # App shell, fonts, error/404 pages
+│   │   ├── hafco.tsx          # Bilingual Hafco case study
 │   │   └── index.tsx          # Single-page portfolio (hero, about, work, services, contact)
 │   ├── lib/
 │   │   └── content.ts         # Bilingual content: projects, copy, translations
@@ -88,10 +88,11 @@ Unit and component tests (Vitest): routing, language switching, contact form val
 
 ## Deployment
 
-Every push to main deploys automatically. The site is server-rendered, with the bilingual content served from `src/lib/content.ts`.
+Deployment depends on the hosting configuration; GitHub connection alone does not confirm automatic deployment. The site is server-rendered, with the bilingual content served from `src/lib/content.ts`.
 
 ## Contact
 
+Phone & WhatsApp: +966 55 049 0988
 Email: a.rahmanmohamed2002@gmail.com
 LinkedIn: linkedin.com/in/abdelrahman-mohamed
 GitHub: github.com/a-rahman-25
