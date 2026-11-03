@@ -25,3 +25,8 @@ describe("portfolio facts", () => {
     expect(t.en.stats[2].display).toBe("2–3 days → seconds");
   });
 });
+describe("concept disclaimers", () => {
+  it("names the real company, not the concept title", () => {
+    expect(projects.find(p => p.id === "keo")?.disclaimer?.en).toBe("Unofficial concept, not affiliated with KEO International Consultants.");
+  });
+});

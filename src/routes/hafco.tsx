@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ArrowLeft, Globe } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { caseStudy, type Lang } from "@/lib/content";
-import companyScreen from "@/assets/projects/hafco-1.webp";
+import { caseStudy, ERP_DEMO_URL, type Lang } from "@/lib/content";
+import erp1 from "@/assets/projects/hafco-erp-1.webp";
+import erp2 from "@/assets/projects/hafco-erp-2.webp";
+import erp3 from "@/assets/projects/hafco-erp-3.webp";
 
 export const Route = createFileRoute("/hafco")({
   head: () => ({ meta: [
@@ -34,12 +36,30 @@ function HafcoCaseStudy() {
       <p className="text-gold">{c.role}</p>
       <h1 className="mt-5 font-display text-4xl font-semibold md:text-6xl">{c.title}</h1>
       <p className="mt-6 max-w-3xl text-xl leading-relaxed text-muted-foreground">{c.intro}</p>
+      <div className="mt-8 flex flex-wrap items-center gap-4"><Button asChild size="lg"><a href={ERP_DEMO_URL} target="_blank" rel="noreferrer">{c.demo}<ArrowUpRight className="h-4 w-4 rtl:-scale-x-100"/></a></Button><span className="text-sm text-muted-foreground">{c.demoNote}</span></div>
     </header>
-    <div className="grid gap-10 border-y border-border py-8 md:grid-cols-3">
-      {[{ value: "13", label: lang === "en" ? "ERP modules" : "وحدة ERP" }, { value: "190", label: lang === "en" ? "Employees on payroll" : "موظفاً في مسيّر الرواتب" }, { value: lang === "en" ? "2–3 days → seconds" : "2–3 أيام ← ثوانٍ", label: lang === "en" ? "Payroll processing" : "معالجة الرواتب" }].map(stat => <div key={stat.label}><strong className="font-display text-3xl text-gold">{stat.value}</strong><p className="mt-2 text-muted-foreground">{stat.label}</p></div>)}
+    <div className="grid gap-8 border-y border-border py-8 sm:grid-cols-2 lg:grid-cols-4">
+      {c.results.map(r => <div key={r.label}><strong dir="ltr" className="block font-display text-2xl text-gold">{r.value}</strong><p className="mt-2 text-muted-foreground">{r.label}</p></div>)}
     </div>
     <div className="divide-y divide-border">{c.sections.map((section, i) => <section key={section.title} className="grid gap-6 py-12 md:grid-cols-[1fr_2fr]"><h2 className="font-display text-2xl"><span className="me-3 text-sm text-gold">0{i+1}</span>{section.title}</h2><p className="text-lg leading-relaxed text-muted-foreground">{section.body}</p></section>)}</div>
-    <figure className="mt-8"><img src={companyScreen} alt={c.imageNote} className="aspect-[16/10] w-full rounded-lg border border-border object-cover"/><figcaption className="mt-3 text-sm text-muted-foreground">{c.imageNote}</figcaption></figure>
-    <div className="flex flex-wrap gap-4 py-12"><Button asChild><a href="https://www.hafcobigmovers.com/" target="_blank" rel="noreferrer">{c.website}</a></Button><Button asChild variant="outline"><Link to="/">{c.back}</Link></Button></div>
+    <section className="border-t border-border py-12"><h2 className="font-display text-3xl">{c.decisionsTitle}</h2>
+      <div className="mt-8 grid gap-5 md:grid-cols-2">{c.decisions.map((d, i) => <div key={d.title} className="rounded-lg border border-border bg-card p-6"><span className="text-sm text-gold">0{i+1}</span><h3 className="mt-2 font-display text-xl">{d.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{d.body}</p></div>)}</div>
+    </section>
+    <section className="border-t border-border py-12"><h2 className="font-display text-3xl">{c.archTitle}</h2>
+      <div className="mt-8 flex flex-col items-stretch gap-3 text-center text-sm">
+        <div className="grid grid-cols-2 gap-3">{c.arch.clients.map(x => <div key={x} className="rounded-lg border border-border bg-card p-4">{x}</div>)}</div>
+        <span aria-hidden className="text-gold">↓</span>
+        <div className="rounded-lg border border-gold/60 bg-accent p-4 font-semibold">{c.arch.core}</div>
+        <span aria-hidden className="text-gold">↓</span>
+        <div className="grid grid-cols-3 gap-3">{c.arch.services.map(x => <div key={x} className="rounded-lg border border-border bg-card p-4">{x}</div>)}</div>
+        <span aria-hidden className="text-gold">↓</span>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">{c.arch.external.map(x => <div key={x} className="rounded-lg border border-dashed border-gold/50 p-3">{x}</div>)}</div>
+      </div>
+    </section>
+    <section className="border-t border-border py-12"><h2 className="font-display text-3xl">{c.galleryTitle}</h2>
+      <div className="mt-8 grid gap-5 md:grid-cols-3">{[erp1, erp2, erp3].map((src, i) => <img key={src} src={src} alt={`${c.imageNote} ${i+1}`} loading="lazy" className="aspect-[16/10] w-full rounded-lg border border-border object-cover"/>)}</div>
+      <p className="mt-3 text-sm text-muted-foreground">{c.imageNote}</p>
+    </section>
+    <div className="flex flex-wrap gap-4 py-12"><Button asChild><a href={ERP_DEMO_URL} target="_blank" rel="noreferrer">{c.demo}</a></Button><Button asChild variant="outline"><a href="https://www.hafcobigmovers.com/" target="_blank" rel="noreferrer">{c.website}</a></Button><Button asChild variant="ghost"><Link to="/">{c.back}</Link></Button></div>
   </main>;
 }

@@ -16,6 +16,7 @@ export type Project = {
   tools?: string[];
   idea?: Record<Lang, string>;
   disclaimer?: Record<Lang, string>;
+  company?: string;
   tags: string[];
   title: Record<Lang, string>;
   kind: Record<Lang, string>;
@@ -56,6 +57,7 @@ export const projects: Project[] = [
   },
   {
     id: "elite-ticaret",
+    company: "Elite Ticaret",
     url: "https://elite-ticaret.pages.dev/",
     host: "elite-ticaret.pages.dev",
     hue: 30,
@@ -69,6 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: "elite-saudi",
+    company: "Elite Saudi",
     url: "https://elite-saudi-redefined.pages.dev/",
     host: "elite-saudi-redefined.pages.dev",
     hue: 150,
@@ -82,6 +85,7 @@ export const projects: Project[] = [
   },
   {
     id: "shajarah",
+    company: "Al-Shajarah",
     url: "https://al-shajarah-reimagined.pages.dev/",
     host: "al-shajarah-reimagined.pages.dev",
     hue: 130,
@@ -95,6 +99,7 @@ export const projects: Project[] = [
   },
   {
     id: "prime-elite",
+    company: "Prime Elite",
     url: "https://prime-elite-web.pages.dev/",
     host: "prime-elite-web.pages.dev",
     hue: 250,
@@ -108,6 +113,7 @@ export const projects: Project[] = [
   },
   {
     id: "khaldi",
+    company: "Al-Khaldi",
     url: "https://al-khaldi-legacy.pages.dev/",
     host: "al-khaldi-legacy.pages.dev",
     hue: 55,
@@ -121,6 +127,7 @@ export const projects: Project[] = [
   },
   {
     id: "keo",
+    company: "KEO International Consultants",
     url: "https://keo-heritage-reimagined.pages.dev/",
     host: "keo-heritage-reimagined.pages.dev",
     hue: 15,
@@ -134,6 +141,7 @@ export const projects: Project[] = [
   },
   {
     id: "sahara",
+    company: "Semi Sahara",
     url: "https://semi-sahara-studio.pages.dev/",
     host: "semi-sahara-studio.pages.dev",
     hue: 45,
@@ -163,27 +171,55 @@ export const projects: Project[] = [
 for (const project of projects) {
   if (project.kind.en === "Concept redesign") {
     project.disclaimer = {
-      en: `Unofficial concept, not affiliated with ${project.title.en}.`,
-      ar: `تصوّر غير رسمي، غير تابع لـ ${project.title.ar}.`,
+      en: `Unofficial concept, not affiliated with ${project.company ?? project.title.en}.`,
+      ar: `تصوّر غير رسمي، غير تابع لـ ${project.company ?? project.title.ar}.`,
     };
   }
 }
 
+export const ERP_DEMO_URL = "https://remix-of-hafco-base.pages.dev/";
+
 export const caseStudy = {
-  en: { back: "Back to portfolio", title: "Hafco Base ERP", role: "Sole developer · 2025–Present", intro: "A bilingual 13-module ERP for HAFCO Big Movers in Dammam, Saudi Arabia.", sections: [
+  en: { back: "Back to portfolio", title: "Hafco Base ERP", role: "Sole developer · 2025–Present", intro: "A bilingual 13-module ERP for HAFCO Big Movers in Dammam, Saudi Arabia.", demo: "Try the demo", demoNote: "Demo runs on sample data only.", sections: [
     { title: "The challenge", body: "Replace spreadsheets and paperwork with a connected system for heavy-transport operations, HR, payroll and finance." },
     { title: "My role", body: "I gathered requirements with each department, designed the database and built the web system and Android driver app, shipped to Google Play." },
-    { title: "System design", body: "Fleet, HR and payroll, accounting, procurement and trip invoicing share one bilingual workspace. Arabic interfaces are designed right-to-left from the start, with secure access rules and support for weak mobile networks." },
+    { title: "System design", body: "Fleet, HR and payroll, accounting, procurement and trip invoicing share one bilingual workspace, backed by PostgreSQL with row-level security." },
     { title: "Integrations", body: "ZATCA e-invoicing and Saudi government platforms Qiwa, Muqeem and Bayan connect business operations to external services." },
-    { title: "Results", body: "Payroll for 190 employees went from 2–3 days to seconds. AI-powered OCR reduced document entry from minutes to seconds." },
-  ], imageNote: "Company website screenshots — not the ERP interface.", website: "Company website" },
-  ar: { back: "العودة إلى الأعمال", title: "نظام Hafco Base ERP", role: "المطور الوحيد · 2025–الآن", intro: "نظام ERP ثنائي اللغة من 13 وحدة لشركة هافكو للنقل الثقيل في الدمام، السعودية.", sections: [
+  ],
+  decisionsTitle: "Key technical decisions", decisions: [
+    { title: "Sequential OCR queue", body: "Documents are processed one at a time through a queue, so bulk uploads never overload the AI service or lose files." },
+    { title: "Offline upload queue", body: "The driver app stores uploads locally and sends them when the network returns, so weak mobile coverage never loses data." },
+    { title: "Row-level security audit", body: "I audited 620+ access policies so each role sees only its own department's data." },
+    { title: "Arabic-first design", body: "Every screen was designed right-to-left first, then mirrored for English, instead of translating afterwards." },
+  ],
+  resultsTitle: "Results", results: [
+    { value: "2–3 days → seconds", label: "Payroll for 190 employees" },
+    { value: "3–5 min → 8–12 s", label: "Document entry with OCR" },
+    { value: "90%+", label: "OCR fields read correctly" },
+    { value: "620+", label: "Access policies audited" },
+  ],
+  archTitle: "Architecture", arch: { clients: ["Web ERP (React)", "Android driver app"], core: "API & business logic", services: ["PostgreSQL + RLS", "OCR queue", "Offline sync"], external: ["ZATCA", "Qiwa", "Muqeem", "Bayan"] },
+  galleryTitle: "Screens from the demo", imageNote: "Real ERP screens from the demo, with sample data.", website: "Company website" },
+  ar: { back: "العودة إلى الأعمال", title: "نظام Hafco Base ERP", role: "المطور الوحيد · 2025–الآن", intro: "نظام ERP ثنائي اللغة من 13 وحدة لشركة هافكو للنقل الثقيل في الدمام، السعودية.", demo: "جرّب العرض التجريبي", demoNote: "العرض التجريبي ببيانات وهمية فقط.", sections: [
     { title: "التحدي", body: "استبدال الجداول والأوراق بنظام مترابط لعمليات النقل الثقيل والموارد البشرية والرواتب والمالية." },
     { title: "دوري", body: "جمعت المتطلبات مع كل قسم، وصممت قاعدة البيانات وبنيت نظام الويب وتطبيق السائقين لأندرويد ونشرته على Google Play." },
-    { title: "تصميم النظام", body: "الأسطول والموارد البشرية والرواتب والمحاسبة والمشتريات وفواتير الرحلات في مساحة عمل ثنائية اللغة. الواجهات العربية مصممة من البداية من اليمين لليسار مع صلاحيات آمنة ودعم شبكات الجوال الضعيفة." },
+    { title: "تصميم النظام", body: "الأسطول والموارد البشرية والرواتب والمحاسبة والمشتريات وفواتير الرحلات في مساحة عمل ثنائية اللغة، على PostgreSQL مع أمان على مستوى الصفوف." },
     { title: "التكاملات", body: "الفوترة الإلكترونية من ZATCA والمنصات الحكومية قوى ومقيم وبيان تربط العمليات بالخدمات الخارجية." },
-    { title: "النتائج", body: "اختُصرت معالجة رواتب 190 موظفاً من يومين إلى ثلاثة أيام إلى ثوانٍ، وإدخال المستندات من دقائق إلى ثوانٍ باستخدام OCR بالذكاء الاصطناعي." },
-  ], imageNote: "صور موقع الشركة — وليست واجهة نظام ERP.", website: "موقع الشركة" },
+  ],
+  decisionsTitle: "قرارات تقنية رئيسية", decisions: [
+    { title: "طابور OCR متسلسل", body: "تُعالج المستندات واحداً تلو الآخر عبر طابور، فلا يضغط الرفع الجماعي على خدمة الذكاء الاصطناعي ولا تضيع الملفات." },
+    { title: "طابور رفع دون اتصال", body: "يحفظ تطبيق السائقين الملفات محلياً ويرسلها عند عودة الشبكة، فلا تضيع البيانات مع ضعف التغطية." },
+    { title: "تدقيق صلاحيات الصفوف", body: "دققت أكثر من 620 سياسة وصول ليرى كل دور بيانات قسمه فقط." },
+    { title: "تصميم عربي أولاً", body: "صُممت كل شاشة من اليمين لليسار أولاً ثم عُكست للإنجليزية، بدلاً من الترجمة لاحقاً." },
+  ],
+  resultsTitle: "النتائج", results: [
+    { value: "2–3 أيام ← ثوانٍ", label: "رواتب 190 موظفاً" },
+    { value: "3–5 د ← 8–12 ث", label: "إدخال المستندات بـ OCR" },
+    { value: "+90%", label: "دقة قراءة الحقول" },
+    { value: "+620", label: "سياسة وصول مدققة" },
+  ],
+  archTitle: "البنية", arch: { clients: ["نظام الويب (React)", "تطبيق السائقين"], core: "الواجهة البرمجية ومنطق الأعمال", services: ["PostgreSQL + RLS", "طابور OCR", "مزامنة دون اتصال"], external: ["ZATCA", "قوى", "مقيم", "بيان"] },
+  galleryTitle: "شاشات من العرض التجريبي", imageNote: "شاشات حقيقية من العرض التجريبي ببيانات وهمية.", website: "موقع الشركة" },
 } as const;
 
 export const t = {
