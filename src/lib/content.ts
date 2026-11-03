@@ -41,7 +41,6 @@ export const projects: Project[] = [
   },
   {
     id: "hafco",
-    year: "2025",
     tools: ["React", "Responsive design", "Bilingual EN/AR"],
     idea: { en: "A clear company presence for a Saudi heavy-transport fleet.", ar: "حضور واضح لشركة نقل ثقيل سعودية." },
     url: "https://www.hafcobigmovers.com/",
