@@ -427,7 +427,8 @@ function SiteMock({ p }: { p: Project }) {
 
 function Work({ lang, onPreview }: { lang: Lang; onPreview: (p: Project) => void }) {
   const c = t[lang];
-  const [flag, ...rest] = projects;
+  const flag = projects[0]!;
+  const rest = projects.slice(1);
   return (
     <section id="work" className="stack-frame bg-background px-4 py-24 md:px-8 md:py-32">
       <div className="stack-frame-body mx-auto max-w-7xl">
