@@ -103,7 +103,7 @@ function Reveal({ children, className = "", delay = 0, as: Tag = "div" }: { chil
   );
 }
 
-function CountUp({ target, suffix, display }: { target: number; suffix: string; display?: string }) {
+function CountUp({ target, suffix, display }: { target: number; suffix: string; display?: string | undefined }) {
   const ref = useRef<HTMLElement | null>(null);
   const [n, setN] = useState(0);
   useEffect(() => {
