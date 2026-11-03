@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { projects, PHONE, PHONE_URL, WHATSAPP_URL, t } from "@/lib/content";
+import { projects, PHONE, PHONE_URL, WHATSAPP_URL, LINKEDIN, t } from "@/lib/content";
 
 describe("portfolio facts", () => {
+  it("links to the supplied LinkedIn profile", () => {
+    expect(LINKEDIN).toBe("https://www.linkedin.com/in/arahman-dev");
+  });
   it("records Hafco as 2025–Present", () => {
     expect(projects.find(p => p.id === "hafco-erp")?.year).toBe("2025 – Present");
   });
