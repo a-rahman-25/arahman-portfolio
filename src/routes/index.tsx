@@ -358,7 +358,7 @@ function Work({ lang, onPreview }: { lang: Lang; onPreview: (p: Project) => void
     <ol className="mt-16 space-y-20 border-s border-border ps-5 md:ps-10">{projects.map((p,i) => <li key={p.id} className="relative">
       <span className="absolute -start-8 top-0 bg-background px-1 font-display text-gold md:-start-14">{String(i+1).padStart(2,"0")}</span>
       <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
-        <div className={i % 2 ? "lg:order-2" : ""}><ShotRotator p={p} lang={lang}/>{p.id === "hafco-erp" && <p className="mt-3 text-xs text-muted-foreground">{lang === "en" ? "Real ERP screens from the demo (sample data)." : "شاشات حقيقية من العرض التجريبي (بيانات وهمية)."}</p>}</div>
+        <div className={i % 2 ? "lg:order-2" : ""}><ScrollFrame side={i % 2 ? -1 : 1}><ShotRotator p={p} lang={lang}/></ScrollFrame>{p.id === "hafco-erp" && <p className="mt-3 text-xs text-muted-foreground">{lang === "en" ? "Real ERP screens from the demo (sample data)." : "شاشات حقيقية من العرض التجريبي (بيانات وهمية)."}</p>}</div>
         <div className={i % 2 ? "lg:order-1" : ""}><p className="text-sm text-gold">{p.year ? `${p.year} · ` : ""}{p.kind[lang]}</p><h3 className="mt-3 font-display text-3xl font-semibold">{p.title[lang]}</h3><p className="mt-5 leading-relaxed text-muted-foreground">{p.desc[lang]}</p>
           {p.disclaimer && <p className="mt-4 text-sm text-muted-foreground">{p.disclaimer[lang]}</p>}
           {p.idea && <div className="mt-6 border-s-2 border-gold ps-4"><h4 className="text-sm text-gold">{lang === "en" ? "Design idea" : "فكرة التصميم"}</h4><p className="mt-2 text-muted-foreground">{p.idea[lang]}</p></div>}
