@@ -381,7 +381,7 @@ function Services({ lang }: { lang: Lang }) {
           <div ref={windowRef} className="service-feed-window">
             <div ref={reelRef} className="service-feed-reel">
               {c.services.map((s, i) => {
-                const Icon = serviceIcons[i];
+                const Icon = serviceIcons[i] ?? Boxes;
                 return (
                   <article key={i} {...spotlight} className={`service-feed-card spot group ${i === active ? "is-active" : ""}`}>
                     <div className="relative grid h-36 place-items-center overflow-hidden bg-gradient-to-br from-accent to-forest md:h-44">
