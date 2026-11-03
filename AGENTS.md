@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- All site imagery is inline SVG/CSS or bundled imports; never use .asset.json/CDN pointers (they 404 after GitHub→Cloudflare deploy).
+- Bilingual copy lives in src/lib/content.ts; Arabic toggles dir=rtl on <html>.
