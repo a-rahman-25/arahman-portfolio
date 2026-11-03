@@ -333,12 +333,12 @@ function Work({ lang, onPreview }: { lang: Lang; onPreview: (p: Project) => void
     <ol className="mt-16 space-y-20 border-s border-border ps-5 md:ps-10">{projects.map((p,i) => <li key={p.id} className="relative">
       <span className="absolute -start-8 top-0 bg-background px-1 font-display text-gold md:-start-14">{String(i+1).padStart(2,"0")}</span>
       <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
-        <div className={i % 2 ? "lg:order-2" : ""}><ShotRotator p={p} lang={lang}/>{p.id === "hafco" && <p className="mt-3 text-xs text-muted-foreground">{lang === "en" ? "Company website — not the ERP interface." : "موقع الشركة — وليس واجهة نظام ERP."}</p>}</div>
+        <div className={i % 2 ? "lg:order-2" : ""}><ShotRotator p={p} lang={lang}/>{p.id === "hafco-erp" && <p className="mt-3 text-xs text-muted-foreground">{lang === "en" ? "Real ERP screens from the demo (sample data)." : "شاشات حقيقية من العرض التجريبي (بيانات وهمية)."}</p>}</div>
         <div className={i % 2 ? "lg:order-1" : ""}><p className="text-sm text-gold">{p.year ? `${p.year} · ` : ""}{p.kind[lang]}</p><h3 className="mt-3 font-display text-3xl font-semibold">{p.title[lang]}</h3><p className="mt-5 leading-relaxed text-muted-foreground">{p.desc[lang]}</p>
           {p.disclaimer && <p className="mt-4 text-sm text-muted-foreground">{p.disclaimer[lang]}</p>}
           {p.idea && <div className="mt-6 border-s-2 border-gold ps-4"><h4 className="text-sm text-gold">{lang === "en" ? "Design idea" : "فكرة التصميم"}</h4><p className="mt-2 text-muted-foreground">{p.idea[lang]}</p></div>}
           {p.tools && <><h4 className="mt-6 text-sm text-gold">{lang === "en" ? "Tools & integrations" : "الأدوات والتكاملات"}</h4><Tags tags={p.tools}/></>}
-          <Tags tags={p.tags}/>{p.id === "hafco" ? <div className="mt-6 flex flex-wrap gap-3"><Button asChild><Link to="/hafco">{lang === "en" ? "Read case study" : "دراسة المشروع"}<ArrowUpRight className="h-4 w-4"/></Link></Button><Button asChild variant="outline"><a href={p.url} target="_blank" rel="noreferrer">{lang === "en" ? "Company website" : "موقع الشركة"}</a></Button></div> : <Actions p={p} lang={lang} onPreview={onPreview}/>}
+          <Tags tags={p.tags}/>{p.id === "hafco-erp" ? <div className="mt-6 flex flex-wrap gap-3"><Button asChild><a href={p.url} target="_blank" rel="noreferrer">{lang === "en" ? "Try the ERP demo" : "جرّب النظام"}<ArrowUpRight className="h-4 w-4 rtl:-scale-x-100"/></a></Button><Button asChild variant="outline"><Link to="/hafco">{lang === "en" ? "Read case study" : "دراسة المشروع"}</Link></Button></div> : <Actions p={p} lang={lang} onPreview={onPreview}/>}
         </div></article></li>)}</ol>
   </div></section>;
 }

@@ -24,19 +24,35 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "hafco",
+    id: "hafco-erp",
     year: "2025 – Present",
     tools: ["TypeScript", "React", "PostgreSQL", "Android", "ZATCA", "Qiwa · Muqeem · Bayan"],
     idea: { en: "One bilingual workspace connecting fleet operations, people and finance.", ar: "مساحة عمل ثنائية اللغة تربط عمليات الأسطول والموظفين والمالية." },
+    url: "https://remix-of-hafco-base.pages.dev/",
+    host: "remix-of-hafco-base.pages.dev",
+    hue: 75,
+    tags: ["13 modules", "Bilingual", "Solo delivery"],
+    title: { en: "Hafco Base ERP", ar: "نظام Hafco Base ERP" },
+    kind: { en: "Flagship enterprise system · live demo", ar: "النظام المؤسسي الرئيسي · عرض تجريبي" },
+    desc: {
+      en: "A bilingual 13-module ERP for a heavy-transport company: fleet, HR & payroll, accounting, procurement and trip invoicing, with ZATCA e-invoicing, an Android driver app on Google Play and Saudi government integrations. The demo uses sample data only.",
+      ar: "نظام ERP ثنائي اللغة من 13 وحدة لشركة نقل ثقيل: الأسطول، الموارد البشرية والرواتب، المحاسبة، المشتريات وفواتير الرحلات، مع فوترة ZATCA الإلكترونية وتطبيق سائقين على Google Play وتكامل مع المنصات الحكومية. العرض التجريبي ببيانات وهمية فقط.",
+    },
+  },
+  {
+    id: "hafco",
+    year: "2025",
+    tools: ["React", "Responsive design", "Bilingual EN/AR"],
+    idea: { en: "A clear company presence for a Saudi heavy-transport fleet.", ar: "حضور واضح لشركة نقل ثقيل سعودية." },
     url: "https://www.hafcobigmovers.com/",
     host: "hafcobigmovers.com",
     hue: 75,
-    tags: ["13 modules", "Bilingual", "Solo delivery"],
-    title: { en: "HAFCO Big Movers · Hafco Base ERP", ar: "هافكو للنقل الثقيل · Hafco Base ERP" },
-    kind: { en: "Flagship enterprise system", ar: "النظام المؤسسي الرئيسي" },
+    tags: ["Company website", "Bilingual"],
+    title: { en: "HAFCO Big Movers", ar: "هافكو للنقل الثقيل" },
+    kind: { en: "Company website", ar: "موقع الشركة" },
     desc: {
-      en: "A bilingual 13-module ERP for a heavy-transport company: fleet, HR & payroll, accounting, procurement and trip invoicing, with ZATCA e-invoicing, an Android driver app on Google Play and Saudi government integrations.",
-      ar: "نظام ERP ثنائي اللغة من 13 وحدة لشركة نقل ثقيل: الأسطول، الموارد البشرية والرواتب، المحاسبة، المشتريات وفواتير الرحلات، مع فوترة ZATCA الإلكترونية وتطبيق سائقين على Google Play وتكامل مع المنصات الحكومية.",
+      en: "The public website for HAFCO Big Movers, presenting the company's heavy-transport services and fleet.",
+      ar: "الموقع العام لشركة هافكو للنقل الثقيل، يعرض خدمات النقل الثقيل والأسطول.",
     },
   },
   {
