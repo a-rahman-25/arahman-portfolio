@@ -6,4 +6,6 @@
 - [ ] Check the demo's database is not production — user must check in their own dashboard.
 - [ ] HAFCO permission for its name in the demo — user decision.
 - [x] Download CV button (hero, next to "See the work").
-- [ ] Confirm LinkedIn profile URL — awaiting user.
+- [x] Confirm LinkedIn profile URL — https://www.linkedin.com/in/arahman-dev.
+- [ ] Replace CV, LinkedIn links, RLS wording and README with November 3 uploads; verify download and EN/AR.
+- [ ] Add requested share image — og-image.png was not attached; awaiting user.
