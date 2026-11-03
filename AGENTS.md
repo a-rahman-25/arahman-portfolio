@@ -11,3 +11,5 @@
 
 - All site imagery is inline SVG/CSS or bundled imports; never use .asset.json/CDN pointers (they 404 after GitHub→Cloudflare deploy).
 - Bilingual copy lives in src/lib/content.ts; Arabic toggles dir=rtl on <html>.
+- Project screenshots are bundled and rendered in alternating unpinned timeline rows; this avoids asset failures and scroll traps.
+- Hafco has a dedicated bilingual case-study route; distinguish company website pictures and links from ERP evidence to prevent misleading claims.
